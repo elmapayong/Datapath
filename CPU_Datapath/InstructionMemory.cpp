@@ -4,25 +4,39 @@ using namespace std;
 
 InstructionMemory::InstructionMemory()
 {
-	//opcode = rs = rt = rd = shamt = funct = immediate = address = 0;
+	opcode = rs = rt = rd = shamt = funct = immediate = address = 0;
 
-	instruction_array[0] = 0x2324020;
-	instruction_array[1] = 0x8D2804B0;
-	//= { 0b00000010001100100100000000100000, // Rtype add instruction
-	//	0b10001101001010000000010010110000, // Itype load word instruction
-	//	0b00001000110100000110000100101101 }
+	instruction_array[0] = 0x2324020;	// 0b00000010001100100100000000100000 Rtype
+	instruction_array[1] = 0x8D2804B0;	// 0b10001101001010000000010010110000 Itype
+	instruction_array[2] = 0x8D0612D;	// 0b00001000110100000110000100101101 Jtype
+	/*instruction_array[3] = ;
+	instruction_array[4] = ;
+	instruction_array[5] = ;
+	instruction_array[6] = ;
+	instruction_array[7] = ;
+	instruction_array[8] = ;
+	instruction_array[9] = ;
+	instruction_array[10] = ;
+	instruction_array[11] = ;
+	instruction_array[12] = ;
+	instruction_array[13] = ;
+	instruction_array[14] = ;
+	instruction_array[15] = ;
+	instruction_array[16] = ;*/
 }
 
 
 void
 InstructionMemory::FetchInstruction()
 {
-	opcode = instruction_array[1];
-	//opcode = (opcode & 0xFC000000);	//0b11111100000000000000000000000000
-	//opcode >> 26;
+	for (int i = 0; i < 3; i++)
+	{
+		opcode = instruction_array[i];
+		opcode = (opcode & 0xFC000000);	//0b11111100000000000000000000000000
+		opcode >>= 26;
 
-	cout << opcode << endl;
-
+		cout << opcode << endl;
+	}
 	//if (is_rtype_)
 	//{
 	//	rs = (rs & 0b00000011111000000000000000000000);
