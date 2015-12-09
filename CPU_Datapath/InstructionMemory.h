@@ -10,12 +10,12 @@ public:
 	// Constructor & destructor
 	InstructionMemory();
 	// Function
-	void FetchInstruction();
+	void FetchInstruction(int);
 
 private:
 	// For simplicity we will deal with basic
 	// instruction formats: R-type, I-type, J-type.
 	unsigned int instruction_array[17];
 
-	bool is_rtype_, is_itype_, is_jtype_;
+	bool is_rtype_, is_itype_, is_jtype_ = false;
 };
