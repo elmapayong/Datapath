@@ -6,16 +6,16 @@ InstructionMemory::InstructionMemory()
 {
 	opcode = rs = rt = rd = shamt = funct = immediate = address = 0;
 
-	instruction_array[0] = 0x2324020;	// 00000010001100100100000000100000 Rtype add $t0, $s1, $s2
-	instruction_array[1] = 0x2334820;	// 00000010001100110100100000100000 Rtype add $t1, $s1, $s3
-	instruction_array[2] = 0x22890C80;	// 00100010100010100000110010000000 Itype addi $t2, $s4, 3200(decimal)
-	instruction_array[3] =				//                                  
-	instruction_array[4] = 0x8E4904B0;	// Itype lw $t1, 1200[$s2] --- 1200 is decimal
-	instruction_array[5] = 0x8D0612D;	// Jtype j 0x2324020 <--decimal or hex?
-	/*instruction_array[6] = ;
-	instruction_array[7] = ;
-	instruction_array[8] = ;
-	instruction_array[9] = ;
+	instruction_array[0] = 0x02324020;	// 00000010001100100100000000100000 Rtype add $t0, $s1, $s2
+	instruction_array[1] = 0x02744822;	// 00000010011101000100100000100010 Rtype sub $t1, $s3, $s4
+	instruction_array[2] = 0x11090003;	// 00010001000010010000000000000011 Itype beq $t0, $t1, 3 
+	instruction_array[3] = 0x01095024;	// 00000001000010010101000000100100 Rtype and $t2, $t0, $t1
+	instruction_array[4] = 0xAE6A0003;	// 10101110011010100000000000000011 Itype sw $t2, 3[$s3]                                 
+	instruction_array[5] = 0x8E4904B0;	// 10001110010010010000000000000010 Itype lw $t1, 2[$s2] --- 1200 is decimal
+	instruction_array[6] = 0x08000002;	// 00001000000000000000000000000010 Jtype j to index 2
+	instruction_array[7] = 0x01335825;	// 00000001001100110101100000100101 Rtype or $t3, $t1, $s3
+	instruction_array[8] = 0x0272602A;	// 00000010011100100110000000101010 Rtype slt $t4, $s3, $s2
+	/*instruction_array[9] = ;
 	instruction_array[10] = ;
 	instruction_array[11] = ;
 	instruction_array[12] = ;
@@ -29,6 +29,7 @@ InstructionMemory::InstructionMemory()
 void
 InstructionMemory::FetchInstruction(int pc)
 {
+	is_rtype_ = is_itype_ = is_jtype_ = false;
 	unsigned int instruction = instruction_array[pc];
 
 	opcode = instruction;
@@ -65,7 +66,4 @@ InstructionMemory::FetchInstruction(int pc)
 	}
 	else
 		address = (address & 0x3FFFFFF);
-
-	// Not sure if we need to reset the bools to false after each instruction is executed...
-	is_rtype_ = is_itype_ = is_jtype_ = false;
 }
