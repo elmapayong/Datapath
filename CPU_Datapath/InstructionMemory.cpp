@@ -6,13 +6,13 @@ InstructionMemory::InstructionMemory()
 {
 	opcode = rs = rt = rd = shamt = funct = immediate = address = 0;
 
-	instruction_array[0] = 0x2324020;	// 0b00000010001100100100000000100000 Rtype
-	instruction_array[1] = 0x8D2804B0;	// 0b10001101001010000000010010110000 Itype
-	instruction_array[2] = 0x8D0612D;	// 0b00001000110100000110000100101101 Jtype
-	/*instruction_array[3] = ;
-	instruction_array[4] = ;
-	instruction_array[5] = ;
-	instruction_array[6] = ;
+	instruction_array[0] = 0x2324020;	// 00000010001100100100000000100000 Rtype add $t0, $s1, $s2
+	instruction_array[1] = 0x2334820;	// 00000010001100110100100000100000 Rtype add $t1, $s1, $s3
+	instruction_array[2] = 0x22890C80;	// 00100010100010100000110010000000 Itype addi $t2, $s4, 3200(decimal)
+	instruction_array[3] =				//                                  
+	instruction_array[4] = 0x8E4904B0;	// Itype lw $t1, 1200[$s2] --- 1200 is decimal
+	instruction_array[5] = 0x8D0612D;	// Jtype j 0x2324020 <--decimal or hex?
+	/*instruction_array[6] = ;
 	instruction_array[7] = ;
 	instruction_array[8] = ;
 	instruction_array[9] = ;
@@ -45,26 +45,26 @@ InstructionMemory::FetchInstruction(int pc)
 
 	if (is_rtype_)
 	{
-		rs = (rs & 0b00000011111000000000000000000000);
+		rs = (rs & 0x3E0000);
 		rs >>= 21;
-		rt = (rt & 0b00000000000111110000000000000000);
+		rt = (rt & 0x1F0000);
 		rt >>= 16;
-		rd = (rd & 0b00000000000000001111100000000000);
+		rd = (rd & 0xF800);
 		rd >>= 11;
-		shamt = (shamt & 0b00000000000000000000011111000000);
+		shamt = (shamt & 0x7C0);
 		shamt >>= 6;
-		funct = (funct & 0b00000000000000000000000000111111);
+		funct = (funct & 0x3F);
 	}
 	else if (is_itype_)
 	{
-		rs = (rs & 0b00000011111000000000000000000000);
+		rs = (rs & 0x3E0000);
 		rs >>= 21;
-		rt = (rt & 0b00000000000111110000000000000000);
+		rt = (rt & 0x1F0000);
 		rt >>= 16;
-		immediate = (immediate & 0b00000000000000001111111111111111);
+		immediate = (immediate & 0xFFFF);
 	}
 	else
-		address = (address & 0b00000011111111111111111111111111);
+		address = (address & 0x3FFFFFF);
 
 	// Not sure if we need to reset the bools to false after each instruction is executed...
 	is_rtype_ = is_itype_ = is_jtype_ = false;
