@@ -32,6 +32,8 @@ void Control::clearControlSignals()
 //turns on signals based on type and opcode
 void Control::setControlSignals(int opCode)
 {
+	//!!! SEPARATE I FORMAT TO TURN ON ALUSRC FOR SIGN EXTENSION
+
 	//R-format &
 	//I-format AND, OR, XOR, Add, Sub
 	if (opCode == 0)
