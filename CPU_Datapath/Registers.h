@@ -5,14 +5,20 @@ class Registers
 {
 public:
 	Registers();
-	//from instructions
+	//from instruction
 	int rs;		//read register 1
 	int rt;		//read register 2
+	int rsData;	//data in rs register
+	int rtData;	//data in rt register
 	int rd;		//write register
 
-	int write_data;
-	bool RegWrite;
+	bool RegWrite;		//set by Control
 	int registerArray[25];		//registers
+
+	void setReadRegisters(int, int);
+	void setWriteRegister(int);
+	void setRegWrite(bool);
+	void writeData(int);		//writes data into register specified by rd
 };
 
 
