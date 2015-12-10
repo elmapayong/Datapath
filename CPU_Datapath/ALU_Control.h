@@ -11,7 +11,7 @@ public:
 
 
 	ALU_Control();
-	void setOpCode(int);	//expects 4 bits
+	void setALUOp(int);	//expects 4 bits
 	OPERATION outputOperation;
 private:
 	int opCode;

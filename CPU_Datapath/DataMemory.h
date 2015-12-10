@@ -9,12 +9,11 @@ public:
 	bool MemRead;
 	bool MemWrite;
 	int address;
-	int readdata;
-	int writedata;
+	int readData;
+	int writeData;
 	int memory[32];
 
 	DataMemory();
-
 
 };
 

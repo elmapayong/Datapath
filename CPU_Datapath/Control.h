@@ -11,21 +11,22 @@ public:
 	Control();
 	//in
 	int opCode;
+	int function;	//only applicable to R-type
 	//out
 	bool RegDst;
 	bool Branch;
 	bool MemRead;
 	bool MemtoReg;
-	bool ALUOp;
+	int ALUOp;
 	bool MemWrite;
 	bool ALUSrc;
 	bool RegWrite;
 
-	void setOpCode(int);
+	void setOpCode(int, int);
 
 private:
 	void clearControlSignals();
-	void setControlSignals(int);	//sets all out signals according to opcode
+	void setControlSignals(int, int);	//sets all out signals according to opcode
 };
 
 #endif

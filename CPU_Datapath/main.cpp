@@ -8,6 +8,10 @@ using namespace std;
 
 int main()
 {
+	int type = 8;
+	type >>= 3;
+	cout << type << endl;
+
 
 	system("pause");
 }
