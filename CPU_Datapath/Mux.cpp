@@ -2,13 +2,22 @@
 
 Mux::Mux()
 {
-
+	a, b, result = 0;
+	chooseA = true;
 }
 
-int
-Mux::Choose(int source1, int source2)
-{
-	
 
+void Mux::setChoiceA(bool isA)
+{
+	chooseA = isA;
+
+	if (chooseA)
+		result = a;
+	else
+		result = b;
+}
+
+int Mux::getResult()
+{
 	return result;
 }

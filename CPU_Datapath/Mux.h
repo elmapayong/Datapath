@@ -5,10 +5,12 @@ class Mux
 {
 private:
 	int a, b, result;
+	bool chooseA;
 	 
 public:
 	Mux();
-	int Choose(int, int);
+	void setChoiceA(bool);
+	int getResult();
 };
 
 #endif Mux_H
