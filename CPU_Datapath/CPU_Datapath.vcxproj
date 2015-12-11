@@ -69,7 +69,9 @@
     <ClInclude Include="ALU_Control.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="DataMemory.h" />
+    <ClInclude Include="Datapath.h" />
     <ClInclude Include="InstructionMemory.h" />
+    <ClInclude Include="Mux.h" />
     <ClInclude Include="Registers.h" />
   </ItemGroup>
   <ItemGroup>
@@ -78,8 +80,10 @@
     <ClCompile Include="ALU_Control.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="DataMemory.cpp" />
+    <ClCompile Include="Datapath.cpp" />
     <ClCompile Include="InstructionMemory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mux.cpp" />
     <ClCompile Include="Registers.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

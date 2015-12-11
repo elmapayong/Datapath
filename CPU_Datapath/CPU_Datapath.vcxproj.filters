@@ -36,6 +36,12 @@
     <ClInclude Include="Registers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Datapath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mux.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Adder.cpp">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Registers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Datapath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mux.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
