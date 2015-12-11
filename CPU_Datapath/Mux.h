@@ -10,6 +10,8 @@ private:
 public:
 	Mux();
 	void setChoiceA(bool);
+	void setA(int);
+	void setB(int);
 	int getResult();
 };
 

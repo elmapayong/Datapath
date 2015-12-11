@@ -63,7 +63,12 @@ InstructionMemory::FetchInstruction(int pc)
 		rt = (rt & 0x1F0000);
 		rt >>= 16;
 		immediate = (immediate & 0xFFFF);
+		funct = 0;
 	}
 	else
+	{
 		address = (address & 0x3FFFFFF);
+		funct = 0;
+	}
+
 }

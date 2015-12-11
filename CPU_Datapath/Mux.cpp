@@ -17,6 +17,17 @@ void Mux::setChoiceA(bool isA)
 		result = b;
 }
 
+void Mux::setA(int A)
+{
+	a = A;
+}
+
+void Mux::setB(int B)
+{
+	b = B;
+}
+
+
 int Mux::getResult()
 {
 	return result;

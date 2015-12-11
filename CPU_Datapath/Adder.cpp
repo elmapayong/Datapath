@@ -11,3 +11,13 @@ void Adder::Add()
 {
 	result = a + b;
 }
+
+void Adder::setA(int A)
+{
+	a = A;
+}
+
+void Adder::setB(int B)
+{
+	b = B;
+}

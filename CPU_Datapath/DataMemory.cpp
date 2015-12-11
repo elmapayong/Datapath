@@ -17,3 +17,13 @@ DataMemory::DataMemory()
 	}
 
 }
+
+void DataMemory::setMemRead(bool isRead)
+{
+	MemRead = isRead;
+}
+
+void DataMemory::setMemWrite(bool isWrite)
+{
+	MemWrite = isWrite;
+}

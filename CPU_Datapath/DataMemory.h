@@ -14,6 +14,8 @@ public:
 	int memory[32];
 
 	DataMemory();
+	void setMemRead(bool);
+	void setMemWrite(bool);
 
 };
 

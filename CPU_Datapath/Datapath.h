@@ -14,13 +14,14 @@ class Datapath
 {
 private:
 	InstructionMemory instr_mem;
-	Adder instr_adder, alu_adder;
+	Adder PC_adder, branch_adder;
 	Control control;
-	Mux inst_mux, alu_mux, data_mux;
+	Mux inst_mux, alu_mux, data_mux, branch_mux;
 	Registers registers;
 	ALU_Control alu_control;
 	ALU alu;
 	DataMemory data_mem;
+	int PC;
 
 
 public:

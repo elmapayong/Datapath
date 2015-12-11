@@ -8,6 +8,8 @@ public:
 
 	Adder();
 	void Add();
+	void setA(int);
+	void setB(int)
 };
 
 
