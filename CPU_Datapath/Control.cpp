@@ -46,10 +46,9 @@ void Control::setControlSignals(int opCode, int function)
 	//I-format ANDi, ORi, XORi, Addi, Subi
 	else if (type == 1)		//001
 	{
-		RegDst = true;
 		RegWrite = true;
 		ALUSrc = true;		//chooses value b
-		ALUOp = (function & 0x00000007);	//right most 3 bits
+		ALUOp = (opCode & 0x00000007);	//right most 3 bits
 	}
 	//I-format lw
 	else if (type == 4)		//100

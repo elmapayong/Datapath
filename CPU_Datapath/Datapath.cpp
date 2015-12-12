@@ -2,7 +2,7 @@
 
 Datapath::Datapath()
 {
-	PC = 7;
+	PC = 5;
 	PC_adder.setB(1);	//1 to increment to next instruction
 }
 
@@ -86,7 +86,7 @@ void Datapath::printAll()
 	cout << "REGISTERS"
 		<< "\t" << "MEMORY" << endl;
 
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		registers.printThisRegister(i);
 		cout << "\t\t";

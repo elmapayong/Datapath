@@ -49,7 +49,8 @@ int Registers::getRtData()
 
 void Registers::writeDataIntoReg()
 {
-	registerArray[rd] = writeData;
+	if (RegWrite)
+		registerArray[rd] = writeData;
 }
 
 void Registers::printAllRegisters()
