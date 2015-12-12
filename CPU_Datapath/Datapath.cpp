@@ -9,6 +9,8 @@ Datapath::Datapath()
 void
 Datapath::Run()
 {
+	/*~~~~~~~ RISING CLOCK EDGE ~~~~~~~*/
+
 	instr_mem.FetchInstruction(PC);
 
 	//incremment PC to next instruction
@@ -33,7 +35,6 @@ Datapath::Run()
 	branch_adder.setB(instr_mem.immediate);
 	branch_adder.Add();
 	branch_mux.setB(branch_adder.getResult());
-	PC = branch_mux.getResult();
 
 	//set up registers
 	registers.setReadRegisters(instr_mem.rs, instr_mem.rt);
@@ -48,28 +49,25 @@ Datapath::Run()
 	alu.setB(alu_mux.getResult());
 	alu.calculate();
 	
+
+	/*~~~~~~~ FALLING CLOCK EDGE ~~~~~~~*/
+
 	//data memory access
 	data_mem.setAddress(alu.getResult());
 	data_mem.setWriteData(registers.getRtData());
+	data_mem.accessMemory();
+
+	//send data from memory
+	data_mux.setA(data_mem.getReadData());
+	data_mux.setB(alu.getResult());
+	registers.setWriteData(data_mux.getResult());
 
 
+	/*~~~~~~~ RISING CLOCK EDGE ~~~~~~~*/
+	//RegWrite
+	registers.writeDataIntoReg();
+	//update PC
+	PC = branch_mux.getResult();
 
 
-
-
-
-	//for (int i = 0; i < 9; i++)
-	//{
-	//	// IF/ID stage
-	//	instr_mem.FetchInstruction(i);
-	//	registers.setReadRegisters(instr_mem.rs, instr_mem.rt);
-	//	registers.setWriteRegister(instr_mem.rd);
-
-	//	// ID/EX stage
-
-	//	// Ex/MEM stage
-
-	//	//MEM/WB stage
-	//	
-	//}
 }

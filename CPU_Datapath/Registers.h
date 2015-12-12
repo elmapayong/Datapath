@@ -8,9 +8,10 @@ public:
 	void setReadRegisters(int s, int t);	//sets read registers and grabs their data
 	void setWriteRegister(int d);
 	void setRegWrite(bool);
+	void setWriteData(int);
 	int getRsData();
 	int getRtData();
-	void writeData(int);		//writes data into register specified by rd
+	void writeDataIntoReg();	//writes data into register specified by rd
 
 private:
 	int registerArray[25];		//registers
@@ -21,6 +22,7 @@ private:
 	int rsData;	//data in rs register
 	int rtData;	//data in rt register
 	int rd;		//write register
+	int writeData;	//data to be written
 
 	//set by Control
 	bool RegWrite;

@@ -9,8 +9,10 @@ public:
 	DataMemory();
 	void setMemRead(bool);
 	void setMemWrite(bool);
-	void setAddress(int);		//sets address and grabs data from it
+	void setAddress(int);
 	void setWriteData(int);
+	int getReadData();
+	void accessMemory();	//writes/reads memory if needed
 
 private:
 	bool MemRead;

@@ -3,7 +3,7 @@
 Registers::Registers()
 {
 	rs, rt, rd = 0;		//inputs
-	rsData, rtData = 0;
+	rsData, rtData, writeData = 0;
 	RegWrite = true;
 
 	//fill registers up with some sample values
@@ -32,6 +32,11 @@ void Registers::setRegWrite(bool recordData)
 	RegWrite = recordData;
 }
 
+void Registers::setWriteData(int data)
+{
+	writeData = data;
+}
+
 int Registers::getRsData()
 {
 	return rsData;
@@ -42,7 +47,7 @@ int Registers::getRtData()
 	return rtData;
 }
 
-void Registers::writeData(int data)
+void Registers::writeDataIntoReg()
 {
-	registerArray[rd] = data;
+	registerArray[rd] = writeData;
 }
