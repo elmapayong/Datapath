@@ -17,5 +17,5 @@ private:
 	// instruction formats: R-type, I-type, J-type.
 	unsigned int instruction_array[17];
 
-	bool is_rtype_, is_itype_, is_jtype_ = false;
+	//bool is_rtype_, is_itype_, is_jtype_ = false;
 };
