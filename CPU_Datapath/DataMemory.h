@@ -14,6 +14,8 @@ public:
 	int getReadData();
 	void readMemory();	//reads memory if MemRead is set
 	void writeToMemory();	//writes to memory if MemWrite is set
+	void printAllInMemory();
+	void printThisMemory(int);
 
 private:
 	bool MemRead;
