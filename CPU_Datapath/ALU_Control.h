@@ -11,11 +11,13 @@ public:
 
 
 	ALU_Control();
-	void setALUOp(int);	//expects 4 bits
-	OPERATION outputOperation;
+	void setALUOp(int);	//expects 3 bits
+	OPERATION getOperationType();
+
 private:
 	int opCode;
 	int ALU_op;
+	OPERATION outputOperation;
 };
 
 #endif

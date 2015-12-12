@@ -21,3 +21,8 @@ void Adder::setB(int B)
 {
 	b = B;
 }
+
+int Adder::getResult()
+{
+	return result;
+}

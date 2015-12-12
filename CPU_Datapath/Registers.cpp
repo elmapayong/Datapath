@@ -13,6 +13,7 @@ Registers::Registers()
 	}
 }
 
+//sets read registers and grabs data from specified registers
 void Registers::setReadRegisters(int s, int t)
 {
 	rs = s;
@@ -29,6 +30,16 @@ void Registers::setWriteRegister(int d)
 void Registers::setRegWrite(bool recordData)
 {
 	RegWrite = recordData;
+}
+
+int Registers::getRsData()
+{
+	return rsData;
+}
+
+int Registers::getRtData()
+{
+	return rtData;
 }
 
 void Registers::writeData(int data)

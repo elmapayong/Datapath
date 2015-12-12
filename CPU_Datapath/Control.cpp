@@ -48,7 +48,7 @@ void Control::setControlSignals(int opCode, int function)
 	{
 		RegDst = true;
 		RegWrite = true;
-		ALUSrc = false;		//chooses value b
+		ALUSrc = true;		//chooses value b
 		ALUOp = (function & 0x00000007);	//right most 3 bits
 	}
 	//I-format lw

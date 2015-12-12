@@ -6,16 +6,19 @@
 class DataMemory
 {
 public:
+	DataMemory();
+	void setMemRead(bool);
+	void setMemWrite(bool);
+	void setAddress(int);		//sets address and grabs data from it
+	void setWriteData(int);
+
+private:
 	bool MemRead;
 	bool MemWrite;
 	int address;
 	int readData;
 	int writeData;
 	int memory[32];
-
-	DataMemory();
-	void setMemRead(bool);
-	void setMemWrite(bool);
 
 };
 

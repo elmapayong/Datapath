@@ -3,7 +3,7 @@
 Datapath::Datapath()
 {
 	PC = 0;
-	PC_adder.b = 1;
+	PC_adder.setB(1);	//1 to increment to next instruction
 }
 
 void
@@ -12,36 +12,47 @@ Datapath::Run()
 	instr_mem.FetchInstruction(PC);
 
 	//incremment PC to next instruction
-	PC_adder.a = PC;
+	PC_adder.setA(PC);
 	PC_adder.Add();
 
 	//setting all the controls/choices
 	control.setOpCode(instr_mem.opcode, instr_mem.funct);
-	inst_mux.setChoiceA(control.RegDst);
-	alu_mux.setChoiceA(control.Branch);
+	inst_mux.setChoiceB(control.RegDst);
+	branch_mux.setChoiceB(control.Branch);		//!!! FIX THIS
 	data_mem.setMemRead(control.MemRead);
-	data_mux.setChoiceA(control.MemtoReg);
+	data_mux.setChoiceB(control.MemtoReg);
 	alu_control.setALUOp(control.ALUOp);
+	alu.setOperation(alu_control.getOperationType);
 	data_mem.setMemWrite(control.MemWrite);
-	alu_mux.setChoiceA(control.ALUSrc);
+	alu_mux.setChoiceB(control.ALUSrc);
 	registers.setRegWrite(control.RegWrite);
 	
-	branch_mux.setA(PC_adder.result);
-	branch_adder.setA(PC_adder.result);
+	//branch line - update PC 
+	branch_mux.setA(PC_adder.getResult());
+	branch_adder.setA(PC_adder.getResult());
 	branch_adder.setB(instr_mem.immediate);
 	branch_adder.Add();
-	branch_mux.setB(branch_adder.result);
+	branch_mux.setB(branch_adder.getResult());
+	PC = branch_mux.getResult();
 
-
-
-
-
-	branch_mux.a =
-	
-	instr_adder.result
-
+	//set up registers
 	registers.setReadRegisters(instr_mem.rs, instr_mem.rt);
-	registers.setRegWrite(inst_mux.getResult());
+	registers.setWriteRegister(inst_mux.getResult());
+	
+	//!!! DEAL WITH WRITE DATA AT END OF CYCLE
+
+	//process ALU
+	alu.setA(registers.getRsData);
+	alu_mux.setA(registers.getRtData());
+	alu_mux.setB(instr_mem.immediate);
+	alu.setB(alu_mux.getResult());
+	alu.calculate();
+	
+	//data memory access
+	data_mem.setAddress(alu.getResult());
+	data_mem.setWriteData(registers.getRtData());
+
+
 
 
 

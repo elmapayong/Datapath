@@ -5,6 +5,16 @@ class Registers
 {
 public:
 	Registers();
+	void setReadRegisters(int s, int t);	//sets read registers and grabs their data
+	void setWriteRegister(int d);
+	void setRegWrite(bool);
+	int getRsData();
+	int getRtData();
+	void writeData(int);		//writes data into register specified by rd
+
+private:
+	int registerArray[25];		//registers
+
 	//from instruction
 	int rs;		//read register 1
 	int rt;		//read register 2
@@ -12,13 +22,8 @@ public:
 	int rtData;	//data in rt register
 	int rd;		//write register
 
-	bool RegWrite;		//set by Control
-	int registerArray[25];		//registers
-
-	void setReadRegisters(int, int);
-	void setWriteRegister(int);
-	void setRegWrite(bool);
-	void writeData(int);		//writes data into register specified by rd
+	//set by Control
+	bool RegWrite;
 };
 
 

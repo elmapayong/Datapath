@@ -27,3 +27,15 @@ void DataMemory::setMemWrite(bool isWrite)
 {
 	MemWrite = isWrite;
 }
+
+//sets address and grabs data from that address 
+void DataMemory::setAddress(int adr)
+{
+	address = adr;
+	readData = memory[adr];
+}
+
+void DataMemory::setWriteData(int data)
+{
+	writeData = data;
+}

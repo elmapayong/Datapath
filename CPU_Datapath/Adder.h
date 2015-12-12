@@ -4,12 +4,14 @@
 class Adder
 {
 public:
-	int a, b, result;
-
 	Adder();
 	void Add();
 	void setA(int);
-	void setB(int)
+	void setB(int);
+	int getResult();
+
+private:
+	int a, b, result;
 };
 
 

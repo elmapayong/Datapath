@@ -7,14 +7,9 @@ Mux::Mux()
 }
 
 
-void Mux::setChoiceA(bool isA)
+void Mux::setChoiceB(bool isB)
 {
-	chooseA = isA;
-
-	if (chooseA)
-		result = a;
-	else
-		result = b;
+	chooseB = isB;
 }
 
 void Mux::setA(int A)
@@ -30,5 +25,10 @@ void Mux::setB(int B)
 
 int Mux::getResult()
 {
+	if (chooseB)
+		result = b;
+	else
+		result = a;
+
 	return result;
 }

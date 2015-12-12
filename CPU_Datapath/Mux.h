@@ -5,11 +5,11 @@ class Mux
 {
 private:
 	int a, b, result;
-	bool chooseA;
+	bool chooseB;
 	 
 public:
 	Mux();
-	void setChoiceA(bool);
+	void setChoiceB(bool);
 	void setA(int);
 	void setB(int);
 	int getResult();

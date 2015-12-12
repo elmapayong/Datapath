@@ -7,12 +7,15 @@ class ALU
 {
 public:
 	ALU();
-	int a, b;
-	int result;
-	bool zero;
+	void setA(int);
+	void setB(int);
 	void setOperation(ALU_Control::OPERATION);
+	void calculate();
 	int getResult();
+
 private:
+	int a, b, result;
+	bool Zero;
 	ALU_Control::OPERATION operation;
 };
 

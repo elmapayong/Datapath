@@ -12,10 +12,10 @@ void ALU_Control::setALUOp(int op)
 {
 	switch (op)
 	{
-	case 0:
+	case 0:	//000
 		outputOperation = ADD;
 		break;
-	case 2:
+	case 2:	//010
 		outputOperation = SUB;
 	case 4:
 		outputOperation = AND;
@@ -28,4 +28,9 @@ void ALU_Control::setALUOp(int op)
 	default:
 		break;
 	}
+}
+
+ALU_Control::OPERATION ALU_Control::getOperationType()
+{
+	return outputOperation;
 }
