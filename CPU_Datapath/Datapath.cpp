@@ -76,6 +76,7 @@ void Datapath::Run()
 
 	cout << "    END OF CYCLE:" << endl;
 	printAll();
+	cout << "PC: " << PC << endl;	//DELETE
 	cout << endl;
 
 }
