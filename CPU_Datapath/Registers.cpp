@@ -2,12 +2,12 @@
 
 Registers::Registers()
 {
-	rs, rt, rd = 0;		//inputs
-	rsData, rtData, writeData = 0;
+	rs = rt = rd = 0;		//inputs
+	rsData = rtData = writeData = 0;
 	RegWrite = true;
 
 	//fill registers up with some sample values
-	for (int i = 0; i < 25; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		registerArray[i] = i;
 	}
@@ -50,4 +50,24 @@ int Registers::getRtData()
 void Registers::writeDataIntoReg()
 {
 	registerArray[rd] = writeData;
+}
+
+void Registers::printAllRegisters()
+{
+	for (int i = 0; i < 32; i++)
+	{
+		cout << i << ": " << registerArray[i] << endl;
+	}
+}
+
+void Registers::printThisRegister(int i)
+{
+	if (i > 0 && i < 32)
+	{
+		cout << i << ": " << registerArray[i] << endl;
+	}
+	else
+	{
+		cout << "Invalid register" << endl;
+	}
 }

@@ -32,43 +32,64 @@ InstructionMemory::FetchInstruction(int pc)
 	is_rtype_ = is_itype_ = is_jtype_ = false;
 	unsigned int instruction = instruction_array[pc];
 
-	opcode = instruction;
-	opcode = (opcode & 0xFC000000);	//0b11111100000000000000000000000000
+	//find opcode
+	opcode = (instruction & 0xFC000000);	//0b11111100000000000000000000000000
 	opcode >>= 26;
 
-	if (opcode == 0)
-		is_rtype_ = true;
-	else if (opcode == 0x02 || opcode == 0x03)
-		is_jtype_ = true;
-	else					// Assuming we're dealing with valid instructions this should suffice.
-		is_itype_ = true;	// Otherwise I would have to include a condition here as an "else if" 
-							// instead of "else".
+	//breaks instruction for R-type
+	rs = (instruction & 0x03E00000);
+	rs >>= 21;
+	rt = (instruction & 0x1F0000);
+	rt >>= 16;
+	rd = (instruction & 0xF800);
+	rd >>= 11;
+	shamt = (instruction & 0x7C0);
+	shamt >>= 6;
+	funct = (instruction & 0x3F);
 
-	if (is_rtype_)
-	{
-		rs = (rs & 0x3E0000);
-		rs >>= 21;
-		rt = (rt & 0x1F0000);
-		rt >>= 16;
-		rd = (rd & 0xF800);
-		rd >>= 11;
-		shamt = (shamt & 0x7C0);
-		shamt >>= 6;
-		funct = (funct & 0x3F);
-	}
-	else if (is_itype_)
-	{
-		rs = (rs & 0x3E0000);
-		rs >>= 21;
-		rt = (rt & 0x1F0000);
-		rt >>= 16;
-		immediate = (immediate & 0xFFFF);
-		funct = 0;
-	}
-	else
-	{
-		address = (address & 0x3FFFFFF);
-		funct = 0;
-	}
+	//for I-type
+	immediate = (instruction & 0xFFFF);
+
+	//for J-type
+	address = (instruction & 0x3FFFFFF);
+
+
+
+
+
+	//if (opcode == 0)
+	//	is_rtype_ = true;
+	//else if (opcode == 0x02 || opcode == 0x03)
+	//	is_jtype_ = true;
+	//else					// Assuming we're dealing with valid instructions this should suffice.
+	//	is_itype_ = true;	// Otherwise I would have to include a condition here as an "else if" 
+	//						// instead of "else".
+
+	//if (is_rtype_)
+	//{
+	//	rs = (rs & 0x3E0000);
+	//	rs >>= 21;
+	//	rt = (rt & 0x1F0000);
+	//	rt >>= 16;
+	//	rd = (rd & 0xF800);
+	//	rd >>= 11;
+	//	shamt = (shamt & 0x7C0);
+	//	shamt >>= 6;
+	//	funct = (funct & 0x3F);
+	//}
+	//else if (is_itype_)
+	//{
+	//	rs = (rs & 0x3E0000);
+	//	rs >>= 21;
+	//	rt = (rt & 0x1F0000);
+	//	rt >>= 16;
+	//	immediate = (immediate & 0xFFFF);
+	//	funct = 0;
+	//}
+	//else
+	//{
+	//	address = (address & 0x3FFFFFF);
+	//	funct = 0;
+	//}
 
 }

@@ -20,7 +20,7 @@ void Control::setOpCode(int instruction, int func)
 //clears all controlSignals
 void Control::clearControlSignals()
 {
-	RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite = false;
+	RegDst = Branch = MemRead = MemtoReg = ALUOp = MemWrite = ALUSrc = RegWrite = false;
 }
 
 

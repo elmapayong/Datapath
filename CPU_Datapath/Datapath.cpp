@@ -9,6 +9,8 @@ Datapath::Datapath()
 void
 Datapath::Run()
 {
+	registers.printAllRegisters();
+
 	/*~~~~~~~ RISING CLOCK EDGE ~~~~~~~*/
 
 	instr_mem.FetchInstruction(PC);
@@ -24,7 +26,7 @@ Datapath::Run()
 	data_mem.setMemRead(control.MemRead);
 	data_mux.setChoiceB(control.MemtoReg);
 	alu_control.setALUOp(control.ALUOp);
-	alu.setOperation(alu_control.getOperationType);
+	alu.setOperation(alu_control.getOperationType());
 	data_mem.setMemWrite(control.MemWrite);
 	alu_mux.setChoiceB(control.ALUSrc);
 	registers.setRegWrite(control.RegWrite);
@@ -43,7 +45,7 @@ Datapath::Run()
 	//!!! DEAL WITH WRITE DATA AT END OF CYCLE
 
 	//process ALU
-	alu.setA(registers.getRsData);
+	alu.setA(registers.getRsData());
 	alu_mux.setA(registers.getRtData());
 	alu_mux.setB(instr_mem.immediate);
 	alu.setB(alu_mux.getResult());
@@ -70,4 +72,5 @@ Datapath::Run()
 	PC = branch_mux.getResult();
 
 
+	registers.printAllRegisters();
 }

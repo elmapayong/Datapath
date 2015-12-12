@@ -2,8 +2,8 @@
 
 Mux::Mux()
 {
-	a, b, result = 0;
-	chooseA = true;
+	a = b = result = 0;
+	chooseB = false;
 }
 
 

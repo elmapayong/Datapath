@@ -2,7 +2,7 @@
 
 ALU::ALU()
 {
-	a, b, result = 0;
+	a = b = result = 0;
 	Zero = true;
 	operation = ALU_Control::OPERATION::AND;	//default
 }

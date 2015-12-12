@@ -1,6 +1,4 @@
-#include "Registers.h";
-#include "ALU_Control.h"
-#include "InstructionMemory.h"
+#include "Datapath.h"
 #include <iostream>
 
 using namespace std;
@@ -8,9 +6,9 @@ using namespace std;
 
 int main()
 {
-	int type = 8;
-	type >>= 3;
-	cout << type << endl;
+	Datapath demo;
+	demo.Run();
+
 
 
 	system("pause");

@@ -1,6 +1,9 @@
 #ifndef REGISTERS_H
 #define REGISTERS_H
 
+#include <iostream>
+using namespace std;
+
 class Registers
 {
 public:
@@ -12,6 +15,8 @@ public:
 	int getRsData();
 	int getRtData();
 	void writeDataIntoReg();	//writes data into register specified by rd
+	void printAllRegisters();
+	void printThisRegister(int);
 
 private:
 	int registerArray[25];		//registers

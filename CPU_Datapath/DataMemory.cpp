@@ -11,7 +11,7 @@ DataMemory::DataMemory()
 	writeData = 0;
 
 	//filling the mem array with nums.
-	for (int i = 0; i > 32; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		memory[i] = i;
 	}
