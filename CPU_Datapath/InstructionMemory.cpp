@@ -12,7 +12,7 @@ InstructionMemory::InstructionMemory()
 	instruction_array[3] = 0x11080003;	// 00010001000010000000000000000011 Itype beq $t0, $t1, 3		//beq 8, 8, 3
 	instruction_array[4] = 0x01095024;	// 00000001000010010101000000100100 Rtype and $t2, $t0, $t1
 	instruction_array[5] = 0xAE6A0003;	// 10101110011010100000000000000011 Itype sw $t2, 3[$s3]		//sw 10, 3[19]
-	instruction_array[6] = 0x8E4904B0;	// 10001110010010010000000000000010 Itype lw $t1, 2[$s2] --- 1200 is decimal
+	instruction_array[6] = 0x8E490002;	// 10001110010010010000000000000010 Itype lw $t1, 2[$s2] --- 1200 is decimal	//lw 9, 2[18]
 	instruction_array[7] = 0x08000002;	// 00001000000000000000000000000010 Jtype j to index 2
 	instruction_array[8] = 0x01335825;	// 00000001001100110101100000100101 Rtype or $t3, $t1, $s3
 	instruction_array[9] = 0x0272602A;	// 00000010011100100110000000101010 Rtype slt $t4, $s3, $s2
@@ -50,7 +50,7 @@ InstructionMemory::FetchInstruction(int pc)
 	funct = (instruction & 0x3F);
 
 	//for I-type
-	immediate = (instruction & 0xFFFF);
+	immediate = (instruction & 0x0000FFFF);
 
 	//for J-type
 	address = (instruction & 0x3FFFFFF);

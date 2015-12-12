@@ -2,7 +2,7 @@
 
 Datapath::Datapath()
 {
-	PC = 5;
+	PC = 0;
 	PC_adder.setB(1);	//1 to increment to next instruction
 }
 
