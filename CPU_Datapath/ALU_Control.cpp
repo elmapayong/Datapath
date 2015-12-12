@@ -17,11 +17,13 @@ void ALU_Control::setALUOp(int op)
 		break;
 	case 2:	//010
 		outputOperation = SUB;
+		break;
 	case 4:
 		outputOperation = AND;
 		break;
 	case 5:
 		outputOperation = OR;
+		break;
 	case 7:
 		outputOperation = NOR;
 		break;

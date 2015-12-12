@@ -19,7 +19,7 @@ public:
 	void printThisRegister(int);
 
 private:
-	int registerArray[25];		//registers
+	int registerArray[32];		//registers
 
 	//from instruction
 	int rs;		//read register 1

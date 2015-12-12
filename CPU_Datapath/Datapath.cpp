@@ -2,7 +2,7 @@
 
 Datapath::Datapath()
 {
-	PC = 0;
+	PC = 7;
 	PC_adder.setB(1);	//1 to increment to next instruction
 }
 
@@ -34,12 +34,14 @@ Datapath::Run()
 	//branch line - update PC 
 	branch_mux.setA(PC_adder.getResult());
 	branch_adder.setA(PC_adder.getResult());
-	branch_adder.setB(instr_mem.immediate);
+	branch_adder.setB(instr_mem.immediate-1);
 	branch_adder.Add();
 	branch_mux.setB(branch_adder.getResult());
 
 	//set up registers
 	registers.setReadRegisters(instr_mem.rs, instr_mem.rt);
+	inst_mux.setA(instr_mem.rt);
+	inst_mux.setB(instr_mem.rd);
 	registers.setWriteRegister(inst_mux.getResult());
 	
 	//!!! DEAL WITH WRITE DATA AT END OF CYCLE
@@ -60,8 +62,8 @@ Datapath::Run()
 	data_mem.accessMemory();
 
 	//send data from memory
-	data_mux.setA(data_mem.getReadData());
-	data_mux.setB(alu.getResult());
+	data_mux.setB(data_mem.getReadData());
+	data_mux.setA(alu.getResult());
 	registers.setWriteData(data_mux.getResult());
 
 
@@ -73,4 +75,6 @@ Datapath::Run()
 
 
 	registers.printAllRegisters();
+
+	cout << PC << endl;
 }

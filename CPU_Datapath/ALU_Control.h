@@ -16,7 +16,6 @@ public:
 
 private:
 	int opCode;
-	int ALU_op;
 	OPERATION outputOperation;
 };
 

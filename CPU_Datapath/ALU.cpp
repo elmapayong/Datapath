@@ -3,7 +3,7 @@
 ALU::ALU()
 {
 	a = b = result = 0;
-	Zero = true;
+	Zero = false;
 	operation = ALU_Control::OPERATION::AND;	//default
 }
 
@@ -24,6 +24,8 @@ void ALU::setOperation(ALU_Control::OPERATION op)
 
 void ALU::calculate()
 {
+	Zero = false;
+
 	switch (operation)
 	{
 	case ALU_Control::OPERATION::AND:
@@ -43,6 +45,8 @@ void ALU::calculate()
 		break;
 	case ALU_Control::OPERATION::SUB:
 		result = a - b;
+		if (result == 0)
+			Zero = true;
 		break;
 	default:
 		result = -1;
