@@ -27,6 +27,7 @@ private:
 public:
 	Datapath();
 	void Run();
+	void printAll();
 };
 
 #endif Datapath_H

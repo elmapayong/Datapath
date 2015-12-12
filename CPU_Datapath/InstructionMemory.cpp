@@ -30,7 +30,7 @@ InstructionMemory::InstructionMemory()
 void
 InstructionMemory::FetchInstruction(int pc)
 {
-	is_rtype_ = is_itype_ = is_jtype_ = false;
+	//is_rtype_ = is_itype_ = is_jtype_ = false;
 	unsigned int instruction = instruction_array[pc];
 
 	//find opcode
@@ -53,7 +53,6 @@ InstructionMemory::FetchInstruction(int pc)
 
 	//for J-type
 	address = (instruction & 0x3FFFFFF);
-
 
 
 
