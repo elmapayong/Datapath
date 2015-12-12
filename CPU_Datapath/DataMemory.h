@@ -12,7 +12,8 @@ public:
 	void setAddress(int);
 	void setWriteData(int);
 	int getReadData();
-	void accessMemory();	//writes/reads memory if needed
+	void readMemory();	//reads memory if MemRead is set
+	void writeToMemory();	//writes to memory if MemWrite is set
 
 private:
 	bool MemRead;

@@ -43,14 +43,18 @@ int DataMemory::getReadData()
 	return readData;
 }
 
-//reads or writes memory if MemRead/MemWrite is true
-void DataMemory::accessMemory()
+//reads memory if instructed to read
+void DataMemory::readMemory()
 {
 	if (MemRead)
 	{
 		readData = memory[address];
 	}
+}
 
+//writes value into memory if instructed to
+void DataMemory::writeToMemory()
+{
 	if (MemWrite)
 	{
 		memory[address] = writeData;

@@ -59,7 +59,7 @@ Datapath::Run()
 	//data memory access
 	data_mem.setAddress(alu.getResult());
 	data_mem.setWriteData(registers.getRtData());
-	data_mem.accessMemory();
+	data_mem.readMemory();
 
 	//send data from memory
 	data_mux.setB(data_mem.getReadData());
@@ -68,8 +68,8 @@ Datapath::Run()
 
 
 	/*~~~~~~~ RISING CLOCK EDGE ~~~~~~~*/
-	//RegWrite
 	registers.writeDataIntoReg();
+	data_mem.writeToMemory();
 	//update PC
 	PC = branch_mux.getResult();
 
