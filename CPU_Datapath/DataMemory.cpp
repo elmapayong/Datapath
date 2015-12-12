@@ -60,23 +60,3 @@ void DataMemory::writeToMemory()
 		memory[address] = writeData;
 	}
 }
-
-void DataMemory::printAllInMemory()
-{
-	for (int i = 0; i < 32; i++)
-	{
-		cout << i << ": " << memory[i] << endl;
-	}
-}
-
-void DataMemory::printThisMemory(int i)
-{
-	if (i >= 0 && i < 32)
-	{
-		cout << i << ": " << memory[i];
-	}
-	else
-	{
-		cout << "Invalid memory address." << endl;
-	}
-}

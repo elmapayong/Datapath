@@ -6,12 +6,10 @@ Datapath::Datapath()
 	PC_adder.setB(1);	//1 to increment to next instruction
 }
 
-void Datapath::Run()
+void
+Datapath::Run()
 {
-	cout << "  BEGINNING OF CYCLE:" << endl;
-	cout << "PC: " << PC << endl;
-	printAll();
-	cout << endl;
+	registers.printAllRegisters();
 
 	/*~~~~~~~ RISING CLOCK EDGE ~~~~~~~*/
 
@@ -24,7 +22,7 @@ void Datapath::Run()
 	//setting all the controls/choices
 	control.setOpCode(instr_mem.opcode, instr_mem.funct);
 	inst_mux.setChoiceB(control.RegDst);
-	branch_mux.setChoiceB(control.Branch);
+	branch_mux.setChoiceB(control.Branch);		//!!! FIX THIS
 	data_mem.setMemRead(control.MemRead);
 	data_mux.setChoiceB(control.MemtoReg);
 	alu_control.setALUOp(control.ALUOp);
@@ -45,6 +43,8 @@ void Datapath::Run()
 	inst_mux.setA(instr_mem.rt);
 	inst_mux.setB(instr_mem.rd);
 	registers.setWriteRegister(inst_mux.getResult());
+	
+	//!!! DEAL WITH WRITE DATA AT END OF CYCLE
 
 	//process ALU
 	alu.setA(registers.getRsData());
@@ -74,23 +74,7 @@ void Datapath::Run()
 	PC = branch_mux.getResult();
 
 
-	cout << "    END OF CYCLE:" << endl;
-	printAll();
-	cout << endl;
+	registers.printAllRegisters();
 
-}
-
-
-void Datapath::printAll()
-{
-	cout << "REGISTERS"
-		<< "\t" << "MEMORY" << endl;
-
-	for (int i = 0; i < 16; i++)
-	{
-		registers.printThisRegister(i);
-		cout << "\t\t";
-		data_mem.printThisMemory(i);
-		cout << endl;
-	}
+	cout << PC << endl;
 }

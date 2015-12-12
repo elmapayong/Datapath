@@ -62,9 +62,9 @@ void Registers::printAllRegisters()
 
 void Registers::printThisRegister(int i)
 {
-	if (i >= 0 && i < 32)
+	if (i > 0 && i < 32)
 	{
-		cout << i << ": " << registerArray[i];
+		cout << i << ": " << registerArray[i] << endl;
 	}
 	else
 	{
