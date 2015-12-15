@@ -87,14 +87,26 @@ void Datapath::Run()
 
 void Datapath::printAll()
 {
-	cout << "REGISTERS"
-		<< "\t" << "MEMORY" << endl;
+	cout << "\tREGISTERS"
+		<< "\t\t\t" << "MEMORY" << endl;
 
-	for (int i = 0; i < 32; i++)
+	//for (int i = 0; i < 32; i++)
+	//{
+	//	registers.printThisRegister(i);
+	//	cout << "\t\t";
+	//	data_mem.printThisMemory(i);
+	//	cout << endl;
+	//}
+
+	for (int i = 0; i < 16; i++)
 	{
 		registers.printThisRegister(i);
 		cout << "\t\t";
+		registers.printThisRegister(i+16);
+		cout << "\t\t";
 		data_mem.printThisMemory(i);
+		cout << "\t\t";
+		data_mem.printThisMemory(i+16);
 		cout << endl;
 	}
 }
