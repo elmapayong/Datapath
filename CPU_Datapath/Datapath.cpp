@@ -2,7 +2,7 @@
 
 Datapath::Datapath()
 {
-	PC = 0;
+	PC = 7;
 	PC_adder.setB(1);	//1 to increment to next instruction
 }
 
@@ -63,6 +63,10 @@ void Datapath::Run()
 		alu.setB(alu_mux.getResult());
 		alu.calculate();
 
+		//set branch mux control 
+		if (control.Branch == true && alu.getZero())
+			branch_mux.setChoiceB(true);
+
 
 		/*~~~~~~~ FALLING CLOCK EDGE ~~~~~~~*/
 		cout << "- FALLING CLOCK EDGE - " << endl;
@@ -79,10 +83,10 @@ void Datapath::Run()
 		data_mux.setA(alu.getResult());
 		registers.setWriteData(data_mux.getResult());
 
-
-		/*~~~~~~~ RISING CLOCK EDGE ~~~~~~~*/
 		registers.writeDataIntoReg();
 		data_mem.writeToMemory();
+
+		/*~~~~~~~ RISING CLOCK EDGE ~~~~~~~*/
 		//update PC
 		PC = branch_mux.getResult();
 

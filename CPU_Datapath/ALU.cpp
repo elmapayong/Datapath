@@ -17,6 +17,11 @@ void ALU::setB(int B)
 	b = B;
 }
 
+bool ALU::getZero()
+{
+	return Zero;
+}
+
 void ALU::setOperation(ALU_Control::OPERATION op)
 {
 	operation = op;

@@ -10,6 +10,7 @@ public:
 	void setA(int);
 	void setB(int);
 	void setOperation(ALU_Control::OPERATION);
+	bool getZero();
 	void calculate();
 	int getResult();
 
